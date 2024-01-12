@@ -1,0 +1,58 @@
+<mvc:View
+    controllerName="com.project1.project1.controller.Worklist"
+    xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    height="100%">
+
+    <m:Page
+		showHeader="false"
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<Table
+				rows="{/Products}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="Products"/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column width="11rem">
+						<m:Label text="Product Name" />
+						<template>
+							<m:Text text="{ProductName}" wrapping="false" />
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="Product Id" />
+						<template>
+							<m:Input value="{ProductID}"/>
+						</template>
+					</Column>
+					<Column width="6rem" hAlign="End">
+						<m:Label text="Quantity" />
+						<template>
+							<m:Label text="{QuantityPerUnit}" />
+						</template>
+					</Column>
+					<Column width="9rem">
+						<m:Label text="Status" />
+						<template>
+							<m:ObjectStatus text="{=${Discontinued} ? 'Continued' : 'Discontinued'}" state = "{
+                                path: 'Discontinued',
+								formatter: '.formatter.formatAvailableToObjectcolor'
+                            }"/>
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+
+</mvc:View>
